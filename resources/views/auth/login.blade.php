@@ -22,7 +22,7 @@
 
   </head>
 
-  <body class="bg-white">
+  <body class="bg-dark">
 
     <div class="container">
 

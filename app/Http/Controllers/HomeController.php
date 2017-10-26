@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Cate;
+use App\Produ;
+use App\SubCate;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
