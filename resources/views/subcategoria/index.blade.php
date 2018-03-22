@@ -60,7 +60,13 @@
                                             {{$subcategoria->orden}}
                                         </td>
                                         <td>
-                                            <a href="/subcategoria/{!!$subcategoria->id!!}/delete" data-toggle="modal"  class = 'delete btn btn-danger btn-xs'><i class = 'material-icons'>Borrar</i></a>
+                                            <form action="{{ route('subcategoria.destroy', ['id' => $subcategoria->id]) }}" method="post">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Eliminar</button>
+                                                </div>
+                                            </form>
                                         </td>
                                         <td>
                                             <a href="{{ route('subcategoria.edit', $subcategoria->id) }}" class = 'viewEdit btn btn-primary btn-xs' data-link = '/subcategoria/{!!$subcategoria->id!!}/edit'><i class = 'material-icons'>edit</i></a>

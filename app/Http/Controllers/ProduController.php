@@ -9,7 +9,7 @@ use App\SubCate;
 use App\Cate;
 use App\Ima;
 
-class ProdController extends Controller
+class ProduController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -67,7 +67,7 @@ class ProdController extends Controller
                 if (!empty($photos)) {
                     foreach ($photos as $indexPhoto=>$photo) {
                         $nombre = $producto->nombre.'_'.$indexPhoto.'_'.$photo->hashName();
-                        $path = 'img/imagenes/'.$nombre;
+                        $path = 'img/ima/'.$nombre;
                         $imagenes = new Ima();
                         Image::make($photo)->resize(null, 400, function ($constraint) {
                             $constraint->aspectRatio();
@@ -75,7 +75,7 @@ class ProdController extends Controller
                         })->save($path);
                         $imagenes->produ_id = $producto->id;
                         $imagenes->imagen = $path;
-                        $imagenes->nombre =  $producto->nombre.'_'.$indexPhoto.'_'.$photo->hashName();
+                        $imagenes->nombre =  $producto->nombre.'_'.$indexPhoto;
                         $imagenes->orden = $indexPhoto;
                         $imagenes->save();
                     }

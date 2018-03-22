@@ -35,10 +35,23 @@ body {
   text-align: center;
 }
 
+.back_blanco{
+    background: white;
+    margin-top: -50px;
+}
+
 .titulos{
     font-size: 40px;
     font-weight: 100;
 
+}
+
+.titulo_principal{
+    font-size: 40px;
+    font-family: openBold;
+    color: #4E4E4E;
+    padding-bottom: 20px;
+    border-bottom: #FBB03B;
 }
 
 .bloque_3{
@@ -60,6 +73,25 @@ body {
     max-width:300px;
     border-top:1px solid black;
     margin:20px auto 20px;
+}
+
+.centro_700{
+    max-width: 700px;
+    width: 90%;
+    margin: 0 auto;
+
+}
+
+.icono_direccion{
+    width: 40px;
+}
+
+.icono_direccion_tel{
+    width: 20px;
+}
+
+.icono_direccion img{
+    width: 100%;
 }
 
 .titulo_3_linea_arriba{
@@ -392,7 +424,7 @@ body {
 }
 
 .titulo_uno h2{
-    font-size: 34px;
+    font-size: 28px;
 }
 
 .imagen_iphone{

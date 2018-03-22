@@ -25,7 +25,7 @@ class CompanyController extends Controller
      */
     public function create(){
         $title = 'Crear Info Company';
-        return view('company.create', compact('title', 'company'));
+        return view('company.create', compact('title'));
     }
 
     /**
@@ -74,7 +74,7 @@ class CompanyController extends Controller
             return URL::to('imagen/'.$id);
         }
 
-        $imagen = Ima::findOrfail($id);
+        $imagen = Company::findOrfail($id);
         return view('imagen.show',compact('title','imagen'));
     }
 
@@ -86,7 +86,7 @@ class CompanyController extends Controller
      */
     public function edit($id,Request $request)
     {
-        $imagen = Ima::findOrfail($id);
+        $imagen = Company::findOrfail($id);
         $producto = Produ::all();
         return view('imagen.edit',compact('imagen', 'producto'));
     }
@@ -100,7 +100,26 @@ class CompanyController extends Controller
      */
     public function update($id,Request $request)
     {
-        //
+        $company = Company::findOrfail($id);
+            if ($request->hasFile('imagen')) {
+                $imagen = $request->file('imagen');
+                $filename = time().'.'.$imagen->getClientOriginalExtension();
+                $path = 'img/ima/'.$filename;
+                Image::make($imagen)->resize(null, 400, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })->save($path);
+
+                $company->imagen = 'img/ima/'.$filename;
+            }
+
+                $company->nombre = $request->nombre;
+
+                $company->produ_id = $request->id_producto;
+
+                $company->save();
+
+                return redirect('company');
     }
 
     /**
@@ -111,7 +130,7 @@ class CompanyController extends Controller
      */
     public function destroy($id,Request $request)
     {
-        $imagen = Ima::findOrFail($id);
+        $imagen = Company::findOrFail($id);
         $imagen->delete();
         return back()->with('info', 'Fue eliminado exitosamente');
     }

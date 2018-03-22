@@ -45,13 +45,13 @@ class SubCateController extends Controller
     {
         $this->validate($request, [
             'nombre' => 'required|unique:cate|max:255',
-            'imagen' => 'required | mimes:jpeg,jpg,png | max:2000',
+            'imagen' => 'required | image | max:2000',
         ]);
         $subcategoria = new SubCate();
         if ($request->hasFile('imagen')) {
             $imagen = $request->file('imagen');
             $filename = time().'.'.$imagen->getClientOriginalExtension();
-            $path = public_path('img/subcategoria/' . $filename);
+            $path = 'img/subcategoria/'.$filename;
             Image::make($imagen)->resize(null, 400, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
@@ -113,7 +113,7 @@ class SubCateController extends Controller
         if ($request->hasFile('imagen')) {
             $imagen = $request->file('imagen');
             $filename = time().'.'.$imagen->getClientOriginalExtension();
-            $path = public_path('img/subcategoria/' . $filename);
+            $path = 'img/subcategoria/'.$filename;
             Image::make($imagen)->resize(null, 400, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();

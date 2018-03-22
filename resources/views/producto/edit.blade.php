@@ -137,7 +137,8 @@
         $('#cate').on('change',function(e){
             var potato = e.target.value;
             console.log(potato);
-            $.get('/ajaxSucate/'+ potato+'', function(data){
+            var liga = "{{ url('ajaxSucate/') }}";
+            $.get(liga+'/'+ potato+'', function(data){
 
                 $('#subcate').empty();
                 $('#subcate').append('<option>Elije una opcion </option>');

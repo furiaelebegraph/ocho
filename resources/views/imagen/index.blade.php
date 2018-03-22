@@ -67,7 +67,13 @@
                                             <a href="/producto/{!!$producto->id!!}/delete" data-toggle="modal"  class = 'delete btn btn-danger btn-xs'><i class = 'material-icons'>Borrar</i></a>
                                         </td>
                                         <td>
-                                            <a href="{{ route('producto.edit', $producto->id) }}" class = 'viewEdit btn btn-primary btn-xs' data-link = '/subcategoria/{!!$producto->id!!}/edit'><i class = 'material-icons'>edit</i></a>
+                                            <form action="{{ route('producto.destroy', ['id' => $producto->id]) }}" method="post">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Eliminar</button>
+                                                </div>
+                                            </form>
                                         </td>
                                         <td>
                                             <a href = '#' class = 'viewShow btn btn-warning btn-xs' data-link = '/subcategoria/{!!$producto->id!!}'><i class = 'material-icons'>info</i></a>
